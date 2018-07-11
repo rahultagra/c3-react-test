@@ -13,7 +13,7 @@ export class PearsonUsers extends Component {
     this.findUser = this.findUser.bind(this);
   }
   componentWillMount() {
-    if(this.props &&this.props.match && this.props.match.params && this.props.match.params.id)
+    if(this.props && this.props.match && this.props.match.params && this.props.match.params.id)
     {
      this.fetchSingleUser(this.props);
     }
@@ -44,7 +44,7 @@ export class PearsonUsers extends Component {
         users:this.removeDuplicates(users.concat(parsedResponse.data),'id')
       });
     }, (error) => {
-      console.log("Failed! "+ error);
+
     }) 
   }
   findUser(userId) {
@@ -63,21 +63,19 @@ export class PearsonUsers extends Component {
     var obj = usersAll.find((obj) =>  obj.id === userId );
     const i = usersAll.indexOf(obj);
     usersAll.splice(i, 1);
-    console.log("usersAll", usersAll);
     this.setState({
       users:usersAll
-    },()=>console.log(" in set",this.state));
+    });
   }
   checkTarget(e) {
-    if(e.target.className === 'delBtn')
-    { e.preventDefault();
+    if(e.target.className === 'delBtn') {
+      e.preventDefault();
       return
     }   
   }
 
   render() {
     let html = [];
-    console.log("this.state.",this.state);
     this.state.users.length > 0 && this.state.users.forEach(user => {   
      html.push(<Link to={"/userid/" + user.id}  onClick={this.checkTarget}><div className="tile"><UsersDetail user={user} key={user.id} />
      <button className="delBtn" onClick={(e) => this.deleteUser(user.id, e)} data-key = {user.first_name+'_'+user.id}>Delete</button></div></Link>)

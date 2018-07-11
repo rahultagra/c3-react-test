@@ -35,9 +35,17 @@ describe('Test Cases For PearsonUser', () => {
     }
   ];
   
-it('to be defined', () => {
-        const wrapper = setup();
-        expect(wrapper.instance()).toBeDefined();
+  it('to be defined', () => {
+    const wrapper = setup();
+    expect(wrapper.instance()).toBeDefined();
+  });
+
+  it('simulates the click on Link', () => {
+    const e = {
+      preventDefault: jest.fn()
+    };
+    wrapper.find('Link')[0].simulate('click', e);
+    expect(e.preventDefault.mock.calls.length).toBe(1);
   });
   
   it('removeduplicates object with values', () => {
@@ -46,12 +54,14 @@ it('to be defined', () => {
     expect(typeof res).toBe('object');
     expect(res.length).toBe(3);
   });
+  
   it('removeduplicates without value', () => {
     const wrapper = setup();
     const obj1 = [];
     const res =  wrapper.instance().removeDuplicates(obj1,'id');
     expect(res.length).toBe(0);
   });
+
   it('delete User with ID', () => {
     const wrapper = setup();
     wrapper.setState({users:obj});
@@ -59,7 +69,7 @@ it('to be defined', () => {
     expect(obj.length).toBe(3);
   });
 
-  it('Compoent Will Mount', () => {
+  it('Component Will Mount', () => {
     const wrapper = setup();
     wrapper.instance().componentWillMount(); 
     expect(get).toBeDefined();
