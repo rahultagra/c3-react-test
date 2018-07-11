@@ -2,4 +2,50 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #FFF;
+}
+
+.tile {
+    width: 212px;
+    height: 120px;
+    display: inline-block;
+    background: #FFF;
+    margin: 25px 18px;
+}
+.tile .img_main {
+text-align: center;
+margin-top: -40px;
+}
+.tile img {
+  border-radius: 50%;
+  height:80px;
+  width:80px;
+}
+.tile .delBtn {
+color: #007FA3;
+font-size: 14px;
+background: none;
+border: none;
+padding: 2px 10px;
+cursor: pointer;
+outline: inherit;
+position: relative;
+bottom: -32px;
+}
+.tile .name {
+  color: #E93939;
+  font-size:18px;
+  text-align: center
+}
+.main{
+  background: #f5f5f3;
+  padding: 50px 40px;
+}
+h1{
+  font-size: 36px;
+  color: #007FA3;
+  margin: 0;
+  background: #FFF;
+  padding: 40px 20px;
+  font-weight: normal
 }
