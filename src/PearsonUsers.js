@@ -57,8 +57,7 @@ export class PearsonUsers extends Component {
         return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
     });
 }
-  deleteUser(userId) {
-  
+  deleteUser(userId) {  
    const usersAll = this.state.users.slice();
     var obj = usersAll.find((obj) =>  obj.id === userId );
     const i = usersAll.indexOf(obj);
@@ -67,6 +66,7 @@ export class PearsonUsers extends Component {
       users:usersAll
     });
   }
+
   checkTarget(e) {
     if(e.target.className === 'delBtn') {
       e.preventDefault();
@@ -77,8 +77,8 @@ export class PearsonUsers extends Component {
   render() {
     let html = [];
     this.state.users.length > 0 && this.state.users.forEach(user => {   
-     html.push(<Link to={"/userid/" + user.id}  onClick={this.checkTarget}><div className="tile"><UsersDetail user={user} key={user.id} />
-     <button className="delBtn" onClick={(e) => this.deleteUser(user.id, e)} data-key = {user.first_name+'_'+user.id}>Delete</button></div></Link>)
+     html.push(<Link to={"/userid/" + user.id}  onClick={this.checkTarget} class="link" key= {`link_${user.id}`}><div className="tile" key= {`tile_${user.id}`}><UsersDetail user={user} key={user.id} />
+     <button className="delBtn" onClick={(e) => this.deleteUser(user.id, e)} data-key = {`btn_${user.id}`} key= {`del_${user.id}`}>Delete</button></div></Link>)
   });
     return (
       <div className="pearon-users">

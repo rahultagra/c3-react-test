@@ -41,10 +41,12 @@ describe('Test Cases For PearsonUser', () => {
   });
 
   it('simulates the click on Link', () => {
+    const wrapper = setup();
     const e = {
-      preventDefault: jest.fn()
+      preventDefault: jest.fn(),
+      target : { className : 'delBtn'}
     };
-    wrapper.find('Link')[0].simulate('click', e);
+    wrapper.instance().checkTarget(e);
     expect(e.preventDefault.mock.calls.length).toBe(1);
   });
   
@@ -66,7 +68,7 @@ describe('Test Cases For PearsonUser', () => {
     const wrapper = setup();
     wrapper.setState({users:obj});
     wrapper.instance().deleteUser('6'); 
-    expect(obj.length).toBe(3);
+    expect(wrapper.state().users.length).toBe(3);
   });
 
   it('Component Will Mount', () => {
